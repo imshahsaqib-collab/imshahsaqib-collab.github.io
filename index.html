@@ -1,124 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Peer Saqib – Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peer Saqib – PARADOX</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Base */
-    body { margin:0; font-family:'Poppins',sans-serif; background:#0a0f1a; color:#e6eef6; -webkit-font-smoothing:antialiased; }
-    .section { padding:60px 20px; max-width:1000px; margin:auto; box-sizing:border-box; }
-    h1,h2,h3 { margin:0 0 15px 0; }
-    .hero { text-align:center; padding-top:60px; }
-    .glow { color:#4de3ff; text-shadow:0 0 20px #4de3ff; }
-
-    /* Card */
-    .card { background:#0f1728; padding:25px; border-radius:20px; box-shadow:0 0 25px #00111f; margin-bottom:30px; }
-
-    /* Profile circle + image */
-    .profile-wrap { display:flex; justify-content:center; align-items:center; margin-top:20px; }
-    .profile-circle {
-      width:170px;
-      height:170px;
-      border-radius:50%;
-      padding:6px;                 /* outer border thickness */
-      background:transparent;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      box-shadow:0 0 35px rgba(77,227,255,0.18);
-      border:4px solid #4de3ff;    /* glowing ring */
-      overflow:hidden;             /* crop the inner image */
-      margin:auto;
+    :root{
+      --bg:#0a0f1a; --card:#0f1728; --glow:#4de3ff; --muted:#9fb0bd;
     }
-    .profile-circle img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      border-radius:50%;
-      transform:translateZ(0);     /* make smoother on mobile */
-    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(180deg,#071019 0%, #071826 100%);color:#e6eef6;-webkit-font-smoothing:antialiased}
+    .site { max-width:1000px;margin:0 auto;padding:18px; }
 
-    /* small helper */
-    .tag { display:inline-block; padding:8px 15px; border:1px solid #4de3ff; border-radius:20px; margin:5px; font-size:14px; color:#dff9ff; }
-    a { color:#4de3ff; text-decoration:none; word-break:break-word; }
+    /* HEADER (logo + nav) */
+    .header { display:flex;align-items:center;gap:18px;padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.1));box-shadow:0 6px 20px rgba(0,0,0,0.6); margin-bottom:18px;}
+    .logo-wrap { display:flex;align-items:center;gap:12px; }
+    .logo-circle { width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#7ef0ff,#34c7f2);box-shadow:0 6px 28px rgba(77,227,255,0.22); font-weight:700; color:#012; font-size:22px; }
+    .brand { font-size:20px; font-weight:700; letter-spacing:2px; color: #dff9ff; text-transform:uppercase;}
+    .brand small{display:block;font-weight:600;color:var(--muted);font-size:12px;margin-top:2px;letter-spacing:1px}
 
-    /* responsive */
-    @media (max-width:420px){
-      .section { padding:35px 18px; }
-      .profile-circle { width:140px; height:140px; }
-    }
+    /* HERO */
+    .hero { text-align:center;padding:30px 10px 18px; }
+    .glow{color:var(--glow);text-shadow:0 0 20px var(--glow); font-size:36px; margin:0}
+    .subtitle{color:var(--muted);margin-top:8px;font-size:14px}
 
-    /* small content tweaks for your resume/projects sections to match look */
-    #resume, #projects { margin-top:24px; padding:20px; border-radius:14px; background:#0e141b; box-shadow:0 0 20px rgba(0,0,0,0.6); }
+    /* profile circle */
+    .profile-wrap{display:flex;justify-content:center;margin:20px 0}
+    .profile-circle{width:170px;height:170px;border-radius:50%;padding:6px;border:4px solid var(--glow);box-shadow:0 0 35px rgba(77,227,255,0.18);overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    .profile-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+
+    /* cards */
+    .card{background:var(--card);padding:20px;border-radius:14px;margin:14px 0;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    .card h2{margin:0 0 10px 0;color:var(--glow)}
+
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{display:inline-block;padding:8px 12px;border-radius:999px;border:1px dashed rgba(77,227,255,0.25);color:#cfeef7;font-size:13px}
+
+    /* Gallery (other images) */
+    .gallery{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .thumb{width:120px;height:80px;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Floating chat button + box */
+    .chat-btn{position:fixed;right:18px;bottom:18px;z-index:80;background:#ff8a2f;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(255,138,47,0.25);cursor:pointer;border:4px solid rgba(255,255,255,0.08)}
+    .chat-btn svg{width:28px;height:28px;fill:#fff}
+    .chat-box{position:fixed;right:18px;bottom:92px;width:320px;max-width:calc(100% - 40px);background:#07121a;color:#eaf6ff;border-radius:12px;padding:12px;box-shadow:0 20px 40px rgba(0,0,0,0.6);display:none;flex-direction:column;z-index:90}
+    .chat-box header{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
+    .chat-box .message-list{max-height:220px;overflow:auto;padding:6px 4px;display:flex;flex-direction:column;gap:8px}
+    .msg{padding:8px 10px;border-radius:10px;max-width:80%;}
+    .msg.user{align-self:flex-end;background:linear-gradient(180deg,#2b6b8b,#1f4a63);color:#fff}
+    .msg.bot{align-self:flex-start;background:rgba(255,255,255,0.03);color:#dfeff7}
+    .chat-box .compose{display:flex;gap:8px;margin-top:8px}
+    .chat-box input{flex:1;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef6}
+    .chat-box button{background:var(--glow);border:none;padding:8px 10px;border-radius:8px;color:#002;cursor:pointer}
+
+    /* small footer spacing */
+    footer{padding:20px;color:var(--muted);text-align:center;font-size:13px;margin-top:18px}
+
+    @media(max-width:420px){.header{padding:12px}.glow{font-size:28px}.profile-circle{width:140px;height:140px}}
   </style>
 </head>
 <body>
+  <div class="site">
 
-  <div class="section hero">
-    <h1 class="glow">Peer Saqib</h1>
-    <h3>AI • ICTSM • Digital Future Learner</h3>
+    <!-- Header with PARADOX brand -->
+    <div class="header">
+      <div class="logo-wrap">
+        <div class="logo-circle">P</div>
+        <div>
+          <div class="brand">PARADOX</div>
+          <small class="brand small">AI • ICTSM • Digital Future</small>
+        </div>
+      </div>
+      <!-- optional nav placeholder -->
+      <div style="margin-left:auto; color:var(--muted)">Welcome</div>
+    </div>
 
-    <!-- Profile image inside glowing ring -->
-    <div class="profile-wrap">
-      <div class="profile-circle">
-        <!-- Make sure me.jpg exists in repo root -->
-        <img src="me.jpg" alt="Profile Image" class="profile-pic" />
+    <!-- Hero -->
+    <div class="hero">
+      <h1 class="glow">Peer Saqib</h1>
+      <div class="subtitle">AI • ICTSM • Digital Future Learner</div>
+
+      <!-- PROFILE -->
+      <div class="profile-wrap">
+        <div class="profile-circle">
+          <!-- make sure me.jpg exists in repo root -->
+          <img src="me.jpg" alt="Profile Image">
+        </div>
       </div>
     </div>
+
+    <!-- Personal summary -->
+    <div class="card">
+      <h2>Personal Summary</h2>
+      <p>I am Peer Saqib, an aspiring ICTSM Junior Engineer with a strong interest in Artificial Intelligence,
+      computer hardware, and modern digital technologies. Class 12th (IT) gave me a foundation in networking,
+      troubleshooting and system maintenance. I focus on hands-on learning and building real projects.</p>
+
+      <div style="margin-top:12px" class="tags">
+        <span class="tag">ICTSM Junior Engineer</span>
+        <span class="tag">AI Learner</span>
+        <span class="tag">Class 12th (IT)</span>
+      </div>
+    </div>
+
+    <!-- Social / contact -->
+    <div class="card">
+      <h2>Connect With Me Online</h2>
+      <p style="color:var(--muted)">Links</p>
+      <p><strong>Email:</strong> <a href="mailto:imshahsaqib@gmail.com">imshahsaqib@gmail.com</a></p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/im_peersaqib">instagram.com/im_peersaqib</a></p>
+      <p><strong>Snapchat:</strong> <a href="https://www.snapchat.com/add/peer-saqib">snapchat.com/add/peer-saqib</a></p>
+    </div>
+
+    <!-- Gallery of other images -->
+    <div class="card">
+      <h2>Other Images</h2>
+      <div class="gallery">
+        <div class="thumb"><img src="other1.jpg" alt="Other 1"></div>
+        <div class="thumb"><img src="other2.jpg" alt="Other 2"></div>
+      </div>
+      <p style="color:var(--muted);font-size:13px;margin-top:10px">Upload <code>other1.jpg</code> and <code>other2.jpg</code> to the repository root to show them here.</p>
+    </div>
+
+    <footer>Made with ❤ — PARADOX</footer>
   </div>
 
-  <div class="section card">
-    <h2 class="glow">Personal Summary</h2>
-    <p>
-      I am Peer Saqib, an aspiring ICTSM Junior Engineer with a strong interest in Artificial Intelligence,
-      computer hardware, and modern digital technologies. I have completed my Class 12th with IT as my base
-      subject, which built my foundation in networking, troubleshooting, system maintenance, and technical
-      problem-solving.
-      <br><br>
-      As a learner deeply passionate about AI and automation, I explore how intelligent systems improve
-      everyday life and future industries. I focus on continuous learning, hands-on practice, and developing
-      myself into a skilled ICTSM professional ready to solve real-world tech challenges.
-    </p>
+  <!-- Chat widget (simple local demo) -->
+  <div class="chat-box" id="chatBox">
+    <header>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--glow);display:flex;align-items:center;justify-content:center;color:#001;font-weight:700">P</div>
+      <div>
+        <div style="font-weight:700">PARADOX Chat</div>
+        <div style="font-size:12px;color:var(--muted)">Ask a question</div>
+      </div>
+    </header>
 
-    <div>
-      <span class="tag">ICTSM Junior Engineer</span>
-      <span class="tag">AI Learner</span>
-      <span class="tag">Class 12th (IT)</span>
-      <span class="tag">Tech Explorer</span>
-      <span class="tag">Continuous Learner</span>
+    <div class="message-list" id="messages">
+      <div class="msg bot">Hi! I'm PARADOX assistant. How can I help?</div>
+    </div>
+
+    <div class="compose">
+      <input id="chatInput" placeholder="Type a message..." />
+      <button id="sendBtn">Send</button>
     </div>
   </div>
 
-  <div class="section card">
-    <h2 class="glow">Contact</h2>
-    <p><strong>Email:</strong> <a href="mailto:imshahsaqib@gmail.com">imshahsaqib@gmail.com</a></p>
+  <div class="chat-btn" id="chatBtn" title="Chat">
+    <!-- simple chat icon -->
+    <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v12c0 1.1.9 2 2 2h3v4l5-4h5c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
   </div>
 
-  <div class="section card">
-    <h2 class="glow">Social Profiles</h2>
-    <p><strong>Instagram:</strong><br> <a href="https://www.instagram.com/im_peersaqib?igsh=bDRldDVwOGcxM2J0">https://www.instagram.com/im_peersaqib</a></p>
-    <p><strong>Snapchat:</strong><br> <a href="https://www.snapchat.com/add/peer-saqib?share_id=6MW21d8oZGI&locale=en-GB">https://www.snapchat.com/add/peer-saqib</a></p>
-    <p><strong>Facebook:</strong><br> <a href="https://www.facebook.com/share/1D9ZPiH4pX/">Facebook Profile Link</a></p>
-  </div>
+  <script>
+    // Chat toggle
+    const chatBtn = document.getElementById('chatBtn');
+    const chatBox = document.getElementById('chatBox');
+    const messages = document.getElementById('messages');
+    const input = document.getElementById('chatInput');
+    const send = document.getElementById('sendBtn');
 
-  <!-- Resume Section -->
-  <section id="resume" class="section">
-    <h2 class="glow">Resume</h2>
-    <p class="mb-3">Download my updated resume here:</p>
-    <a href="#" class="px-4 py-2" style="background:#128fd6;color:#fff;padding:10px 14px;border-radius:12px;display:inline-block;">Download Resume</a>
-  </section>
+    chatBtn.addEventListener('click', ()=> {
+      chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+    });
 
-  <!-- Project Section -->
-  <section id="projects" class="section">
-    <h2 class="glow">Projects</h2>
-    <div class="mt-3 card" style="margin-top:12px;">
-      <h3 style="margin:0 0 8px 0;">Arduino Uno – Smart LED Control</h3>
-      <p style="margin:0;">Created a Smart LED Control system using Arduino Uno, ultrasonic sensor, and C++ programming. The system detects distance and automatically adjusts LED brightness. Useful for automation and energy-saving applications.</p>
-    </div>
-  </section>
+    function botReply(text){
+      const el = document.createElement('div'); el.className='msg bot'; el.innerText = text; messages.appendChild(el); messages.scrollTop = messages.scrollHeight;
+    }
+    function userMessage(text){
+      const el = document.createElement('div'); el.className='msg user'; el.innerText = text; messages.appendChild(el); messages.scrollTop = messages.scrollHeight;
+    }
 
+    send.addEventListener('click', ()=>{
+      const v = input.value.trim(); if(!v) return;
+      userMessage(v); input.value='';
+      // simple canned replies
+      setTimeout(()=>{ botReply("Thanks — I'll check that. For help with GitHub Pages, say 'github' or for contact say 'email'."); }, 900);
+    });
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ send.click(); }});
+  </script>
 </body>
 </html>
